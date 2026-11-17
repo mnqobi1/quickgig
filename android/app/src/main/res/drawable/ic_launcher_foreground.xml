@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- QuickGig mark: a lightning bolt through a briefcase silhouette,
+     per the icon concept in the Part 1 Planning & Design document. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path
+        android:fillColor="#EFEAFB"
+        android:pathData="M34,46 h10 v-8 a10,10 0 0 1 10,-10 h8 a10,10 0 0 1 10,10 v8 h10 a6,6 0 0 1 6,6 v28 a6,6 0 0 1 -6,6 h-48 a6,6 0 0 1 -6,-6 v-28 a6,6 0 0 1 6,-6 z M50,36 v10 h8 v-10 a2,2 0 0 0 -2,-2 h-4 a2,2 0 0 0 -2,2 z" />
+    <path
+        android:fillColor="#6C3CE0"
+        android:pathData="M60,50 L44,72 h10 l-3,20 22,-26 h-10 z" />
+</vector>

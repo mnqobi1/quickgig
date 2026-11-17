@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  DEBUG BUILDS ONLY. Android merges this file over the one in src/main, so
+  builds you run from Android Studio use this, while a release build keeps
+  the strict version in src/main (plain HTTP only to 10.0.2.2 / localhost).
+
+  Why it exists: when you test on a real phone over Wi-Fi, the app has to
+  reach your computer at an address like http://192.168.1.50:3000/. That
+  address changes between networks, so it can't be listed ahead of time —
+  and Android blocks plain HTTP to any address that isn't listed. In debug
+  builds, which only ever talk to your own development API, that's relaxed.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

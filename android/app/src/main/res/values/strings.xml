@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuickGig</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_my_gigs">My gigs</string>
+    <string name="nav_post">Post</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Login / sign-up -->
+    <string name="login_full_name">Full name</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_log_in">Log in</string>
+    <string name="login_create_account">Create account</string>
+    <string name="login_continue_google">Continue with Google</string>
+    <string name="login_new_here">New here? Sign up</string>
+    <string name="login_have_account">Already have an account? Log in</string>
+    <string name="login_fill_all_fields">Please fill in all fields</string>
+
+    <!-- Home / feed -->
+    <string name="category_all">All</string>
+    <string name="category_errands">Errands</string>
+    <string name="category_tutoring">Tutoring</string>
+    <string name="category_creative">Creative</string>
+    <string name="category_labour">Labour</string>
+    <string name="home_radius_km">%1$d km</string>
+    <string name="home_offline_banner">%1$d gig(s) saved offline — will post once you\'re back online.</string>
+    <string name="gig_meta_distance">%1$s km</string>
+    <string name="gig_meta_credits">%1$d credits</string>
+    <string name="gig_meta_unpaid">Unpaid</string>
+
+    <!-- Post a gig -->
+    <string name="post_gig_title">Post a gig</string>
+    <string name="post_gig_title_hint">Title, e.g. Dog walk, 30 min</string>
+    <string name="post_gig_description">Description</string>
+    <string name="post_gig_credits">Credits offered</string>
+    <string name="post_gig_offline_note">No signal? This draft saves and posts once you\'re back online.</string>
+    <string name="post_gig_button">Post gig</string>
+    <string name="post_gig_posting">Posting…</string>
+    <string name="post_gig_missing_title">Give the gig a title</string>
+
+    <!-- My gigs -->
+    <string name="my_gigs_title">My gigs</string>
+    <string name="tab_posted">Posted</string>
+    <string name="tab_applied">Applied</string>
+    <string name="tab_active">Active</string>
+    <string name="tab_completed">Completed</string>
+    <string name="my_gigs_drafts_pending">%1$d draft(s) waiting to sync</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_verified_student">Verified Student</string>
+    <string name="profile_hustle_score_suffix"> Hustle Score</string>
+    <string name="profile_stats">%1$d gigs completed · %2$s★ average</string>
+    <string name="profile_badges_title">Badges</string>
+    <string name="profile_no_badges">No badges yet — complete gigs to start earning them.</string>
+    <string name="badge_verified_student">Verified Student</string>
+    <string name="badge_top_rated">Top Rated</string>
+    <string name="badge_reliable_runner">Reliable Runner</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_updated">Language updated</string>
+    <string name="settings_notifications_title">Push notifications</string>
+    <string name="settings_notifications_desc">New gigs nearby, application updates, and messages</string>
+    <string name="settings_location_title">Share exact location</string>
+    <string name="settings_location_desc">Off shows only your general campus/area to other users</string>
+    <string name="settings_payment_title">Payment &amp; credits</string>
+    <string name="settings_payment_desc">Manage payout details and view your campus-credit balance</string>
+    <string name="settings_logout">Log out</string>
+</resources>

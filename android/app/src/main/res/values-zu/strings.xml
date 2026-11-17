@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuickGig</string>
+
+    <string name="nav_home">Ekhaya</string>
+    <string name="nav_my_gigs">Imisebenzi yami</string>
+    <string name="nav_post">Thumela</string>
+    <string name="nav_profile">Iphrofayela</string>
+
+    <string name="login_full_name">Igama eliphelele</string>
+    <string name="login_email">I-imeyili</string>
+    <string name="login_password">Iphasiwedi</string>
+    <string name="login_log_in">Ngena</string>
+    <string name="login_create_account">Dala i-akhawunti</string>
+    <string name="login_continue_google">Qhubeka nge-Google</string>
+    <string name="login_new_here">Umusha lapha? Bhalisa</string>
+    <string name="login_have_account">Usunayo i-akhawunti? Ngena</string>
+    <string name="login_fill_all_fields">Sicela ugcwalise zonke izinkambu</string>
+
+    <string name="category_all">Konke</string>
+    <string name="category_errands">Imisebenzi emincane</string>
+    <string name="category_tutoring">Ukufundisa</string>
+    <string name="category_creative">Ubuciko</string>
+    <string name="category_labour">Umsebenzi wamandla</string>
+    <string name="home_radius_km">%1$d km</string>
+    <string name="home_offline_banner">%1$d umsebenzi ogciniwe ku-oflayini — uzothunyelwa lapho usuxhumeke ku-inthanethi.</string>
+    <string name="gig_meta_distance">%1$s km</string>
+    <string name="gig_meta_credits">%1$d amakhredithi</string>
+    <string name="gig_meta_unpaid">Akukhokhelwa</string>
+
+    <string name="post_gig_title">Thumela umsebenzi</string>
+    <string name="post_gig_title_hint">Isihloko, isb. Ukuhambisa inja, imizuzu engu-30</string>
+    <string name="post_gig_description">Incazelo</string>
+    <string name="post_gig_credits">Amakhredithi anikeziwe</string>
+    <string name="post_gig_offline_note">Awunayo isignali? Lolu daftha luyagcinwa futhi luthunyelwe lapho usuxhumeke ku-inthanethi.</string>
+    <string name="post_gig_button">Thumela umsebenzi</string>
+    <string name="post_gig_posting">Iyathunyelwa…</string>
+    <string name="post_gig_missing_title">Nika umsebenzi isihloko</string>
+
+    <string name="my_gigs_title">Imisebenzi yami</string>
+    <string name="tab_posted">Kuthunyelwe</string>
+    <string name="tab_applied">Kufakwe isicelo</string>
+    <string name="tab_active">Kuyasebenza</string>
+    <string name="tab_completed">Kuqediwe</string>
+    <string name="my_gigs_drafts_pending">%1$d amadrafti alindele ukuvumelanisa</string>
+
+    <string name="profile_title">Iphrofayela</string>
+    <string name="profile_verified_student">Umfundi Oqinisekisiwe</string>
+    <string name="profile_hustle_score_suffix"> Amaphuzu e-Hustle</string>
+    <string name="profile_stats">%1$d imisebenzi eqediwe · %2$s★ isilinganiso</string>
+    <string name="profile_badges_title">Amabheji</string>
+    <string name="profile_no_badges">Awukho amabheji okwamanje — qedela imisebenzi ukuze uqale ukuwathola.</string>
+    <string name="badge_verified_student">Umfundi Oqinisekisiwe</string>
+    <string name="badge_top_rated">Onikwe Amaphuzu Aphezulu</string>
+    <string name="badge_reliable_runner">Osebenzi Othembekile</string>
+
+    <string name="settings_title">Izilungiselelo</string>
+    <string name="settings_language">Ulimi</string>
+    <string name="settings_language_updated">Ulimi luvuselelwe</string>
+    <string name="settings_notifications_title">Izaziso</string>
+    <string name="settings_notifications_desc">Imisebenzi emisha eseduze, izibuyekezo zezicelo, nemilayezo</string>
+    <string name="settings_location_title">Yabelana ngendawo enembile</string>
+    <string name="settings_location_desc">Uma kucishiwe, kubonisa kuphela indawo yakho ejwayelekile kwabanye abasebenzisi</string>
+    <string name="settings_payment_title">Inkokhelo namakhredithi</string>
+    <string name="settings_payment_desc">Phatha imininingwane yenkokhelo futhi ubone ibhalansi yamakhredithi wekhampasi</string>
+    <string name="settings_logout">Phuma</string>
+</resources>

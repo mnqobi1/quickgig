@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "785348177066",
+    "project_id": "quickgig-44e58",
+    "storage_bucket": "quickgig-44e58.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785348177066:android:3d7ff279bf53f130a4f4d3",
+        "android_client_info": {
+          "package_name": "com.quickgig.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "785348177066-9hdkgurrtnofhejbc9bfk4cjm6cnhg3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfcx0QUMVv7-wWDhK5BbUxPZ0ZWJysOsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "785348177066-9hdkgurrtnofhejbc9bfk4cjm6cnhg3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuickGig</string>
+
+    <string name="nav_home">Tuis</string>
+    <string name="nav_my_gigs">My gigs</string>
+    <string name="nav_post">Pos</string>
+    <string name="nav_profile">Profiel</string>
+
+    <string name="login_full_name">Volledige naam</string>
+    <string name="login_email">E-pos</string>
+    <string name="login_password">Wagwoord</string>
+    <string name="login_log_in">Meld aan</string>
+    <string name="login_create_account">Skep rekening</string>
+    <string name="login_continue_google">Gaan voort met Google</string>
+    <string name="login_new_here">Nuut hier? Registreer</string>
+    <string name="login_have_account">Het jy reeds \'n rekening? Meld aan</string>
+    <string name="login_fill_all_fields">Vul asseblief alle velde in</string>
+
+    <string name="category_all">Almal</string>
+    <string name="category_errands">Besigheidjies</string>
+    <string name="category_tutoring">Onderrig</string>
+    <string name="category_creative">Kreatief</string>
+    <string name="category_labour">Arbeid</string>
+    <string name="home_radius_km">%1$d km</string>
+    <string name="home_offline_banner">%1$d werk(e) vanlyn gestoor — sal gepos word sodra jy weer aanlyn is.</string>
+    <string name="gig_meta_distance">%1$s km</string>
+    <string name="gig_meta_credits">%1$d krediete</string>
+    <string name="gig_meta_unpaid">Onbetaald</string>
+
+    <string name="post_gig_title">Pos \'n werk</string>
+    <string name="post_gig_title_hint">Titel, bv. Loop \'n hond, 30 min</string>
+    <string name="post_gig_description">Beskrywing</string>
+    <string name="post_gig_credits">Krediete aangebied</string>
+    <string name="post_gig_offline_note">Geen sein nie? Hierdie konsep word gestoor en gepos sodra jy weer aanlyn is.</string>
+    <string name="post_gig_button">Pos werk</string>
+    <string name="post_gig_posting">Pos tans…</string>
+    <string name="post_gig_missing_title">Gee die werk \'n titel</string>
+
+    <string name="my_gigs_title">My werk</string>
+    <string name="tab_posted">Geplaas</string>
+    <string name="tab_applied">Aansoek gedoen</string>
+    <string name="tab_active">Aktief</string>
+    <string name="tab_completed">Voltooi</string>
+    <string name="my_gigs_drafts_pending">%1$d konsep(te) wag om te sinkroniseer</string>
+
+    <string name="profile_title">Profiel</string>
+    <string name="profile_verified_student">Geverifieerde Student</string>
+    <string name="profile_hustle_score_suffix"> Hustle-telling</string>
+    <string name="profile_stats">%1$d werke voltooi · %2$s★ gemiddeld</string>
+    <string name="profile_badges_title">Kentekens</string>
+    <string name="profile_no_badges">Nog geen kentekens nie — voltooi werk om dit te begin verdien.</string>
+    <string name="badge_verified_student">Geverifieerde Student</string>
+    <string name="badge_top_rated">Topgegradeer</string>
+    <string name="badge_reliable_runner">Betroubare Werker</string>
+
+    <string name="settings_title">Instellings</string>
+    <string name="settings_language">Taal</string>
+    <string name="settings_language_updated">Taal opgedateer</string>
+    <string name="settings_notifications_title">Kennisgewings</string>
+    <string name="settings_notifications_desc">Nuwe werk naby jou, aansoekopdaterings, en boodskappe</string>
+    <string name="settings_location_title">Deel presiese ligging</string>
+    <string name="settings_location_desc">Af wys slegs jou algemene kampus/area aan ander gebruikers</string>
+    <string name="settings_payment_title">Betaling en krediete</string>
+    <string name="settings_payment_desc">Bestuur uitbetalingsbesonderhede en bekyk jou kampuskredietbalans</string>
+    <string name="settings_logout">Meld af</string>
+</resources>
