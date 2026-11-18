@@ -52,11 +52,3 @@ For the API, set these before starting:
 For testing on a physical device, set `QUICKGIG_API_BASE_URL` to your computer's Wi-Fi address
 (or use `localhost` with `adb reverse`). The emulator uses `10.0.2.2` automatically.
 
-## What you still need to do
-
-1. **Google Cloud Console**: Register an OAuth 2.0 client, add your debug/release SHA-1 fingerprint
-   and package name (`com.quickgig.app`), then set `GOOGLE_CLIENT_IDS` to your client ID.
-2. **Google Maps API key**: Add your Maps key to `AndroidManifest.xml` if you use the map screen.
-3. **Physical device testing**: Run on your phone and verify the full flow end-to-end.
-4. **Push to GitHub** with incremental commits — committing as a single dump weakens the
-   "multiple commits" grading criterion.
