@@ -117,4 +117,8 @@
     <string name="notifications_title">Notifications</string>
     <string name="notifications_empty">No notifications yet</string>
     <string name="notifications_mark_all_read">Mark all as read</string>
+    <string name="fcm_default_title">QuickGig</string>
+<string name="fcm_default_body">You have a new notification</string>
+<string name="fcm_channel_name">QuickGig notifications</string>
+<string name="fcm_channel_description">Push notifications for gig updates and messages</string>
 </resources>

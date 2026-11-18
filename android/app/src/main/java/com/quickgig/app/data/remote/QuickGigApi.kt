@@ -14,6 +14,8 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface QuickGigApi {
+    @POST("api/devices")
+suspend fun registerDevice(@Body body: Map<String, String>): Response<Unit>
 
     @POST("api/auth/register")
     suspend fun register(@Body body: RegisterRequest): Response<AuthResponse>
