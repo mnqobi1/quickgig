@@ -1,5 +1,6 @@
 package com.quickgig.app.data.repository
 
+import android.util.Log
 import com.quickgig.app.data.model.AuthResponse
 import com.quickgig.app.data.model.User
 import com.quickgig.app.data.remote.GoogleSsoRequest
@@ -11,6 +12,8 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import retrofit2.Response
+
+private const val TAG = "AuthRepository"
 
 sealed class AuthResult {
     data class Success(val user: User) : AuthResult()
@@ -29,10 +32,9 @@ class AuthRepository(
         runCatching { api.login(LoginRequest(email, password)) }
             .fold(onSuccess = { handleAuthResponse(it) }, onFailure = { networkError(it) })
 
-    suspend fun loginWithGoogle(name: String, email: String): AuthResult =
-        runCatching { api.loginWithGoogle(GoogleSsoRequest(email, name)) }
+    suspend fun loginWithGoogle(idToken: String): AuthResult =
+        runCatching { api.loginWithGoogle(GoogleSsoRequest(idToken)) }
             .fold(onSuccess = { handleAuthResponse(it) }, onFailure = { networkError(it) })
-
     suspend fun logout() = sessionManager.clear()
 
     val isSignedIn get() = sessionManager.tokenFlow

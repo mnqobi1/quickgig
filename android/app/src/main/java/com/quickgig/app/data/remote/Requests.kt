@@ -15,7 +15,7 @@ data class RegisterRequest(
 data class LoginRequest(val email: String, val password: String)
 
 @Serializable
-data class GoogleSsoRequest(val email: String, val name: String)
+data class GoogleSsoRequest(val idToken: String)
 
 @Serializable
 data class CreateGigRequest(
@@ -41,6 +41,8 @@ data class UpdateSettingsRequest(
     val phone: String? = null,
     val preferredLanguage: String? = null,
     val campusArea: String? = null,
+    val photoUrl: String? = null,
+    val notificationsEnabled: Boolean? = null,
 )
 
 @Serializable

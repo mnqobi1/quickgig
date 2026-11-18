@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                 ProvideAppLanguage(code) {
                     QuickGigTheme {
                         Surface(modifier = Modifier.fillMaxSize()) {
-                            QuickGigNavHost()
+                            QuickGigNavHost(activity = this@MainActivity)
                         }
                     }
                 }

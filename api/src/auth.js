@@ -1,9 +1,7 @@
 // src/auth.js
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
-const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-me';
-const JWT_EXPIRY = '7d';
+const { JWT_SECRET, JWT_EXPIRY } = require('../config');
 
 function hashPassword(plain) {
   return bcrypt.hashSync(plain, 10);

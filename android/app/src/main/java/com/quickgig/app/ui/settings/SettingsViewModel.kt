@@ -13,10 +13,15 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 data class SettingsUiState(
+    val name: String = "",
     val language: SupportedLanguage = SupportedLanguage.ENGLISH,
+    val phone: String? = null,
+    val campusArea: String? = null,
+    val photoUrl: String? = null,
     val notificationsEnabled: Boolean = true,
     val shareExactLocation: Boolean = true,
     val languageSaved: Boolean = false,
+    val settingsSaved: Boolean = false,
     val loggedOut: Boolean = false,
 )
 
@@ -40,6 +45,21 @@ class SettingsViewModel(
                 }
             }
             .launchIn(viewModelScope)
+
+        // Load the current profile so the form pre-fills with what the server knows.
+        viewModelScope.launch {
+            val result = userRepository.getProfile(userId)
+            if (result.isSuccess) {
+                val p = result.getOrNull()!!
+                uiState = uiState.copy(
+                    name = p.name,
+                    phone = p.phone,
+                    campusArea = p.campusArea,
+                    photoUrl = p.photoUrl,
+                    notificationsEnabled = p.notificationsEnabled,
+                )
+            }
+        }
     }
 
     fun onLanguageSelected(language: SupportedLanguage) {
@@ -53,6 +73,34 @@ class SettingsViewModel(
 
     fun onNotificationsToggled(enabled: Boolean) { uiState = uiState.copy(notificationsEnabled = enabled) }
     fun onShareExactLocationToggled(enabled: Boolean) { uiState = uiState.copy(shareExactLocation = enabled) }
+
+    fun onSaveSettings(
+        name: String?,
+        phone: String?,
+        campusArea: String?,
+        photoUrl: String?,
+    ) {
+        viewModelScope.launch {
+            val result = userRepository.updateSettings(
+                userId = userId,
+                name = name,
+                phone = phone,
+                preferredLanguage = uiState.language.code,
+                campusArea = campusArea,
+                photoUrl = photoUrl,
+                notificationsEnabled = uiState.notificationsEnabled,
+            )
+            if (result.isSuccess) {
+                uiState = uiState.copy(settingsSaved = true)
+                uiState = uiState.copy(
+                    name = name ?: "",
+                    phone = phone,
+                    campusArea = campusArea,
+                    photoUrl = photoUrl,
+                )
+            }
+        }
+    }
 
     fun logout() {
         viewModelScope.launch {

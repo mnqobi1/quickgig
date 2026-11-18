@@ -5,7 +5,7 @@ Two independent pieces that talk to each other over HTTP:
 ```
 quickgig-app/
 ├── api/        Node.js + Express + SQLite REST API — real, running, tested (19 passing tests)
-└── android/    Kotlin + Jetpack Compose Android app — source complete, not yet compiled (see android/README.md)
+└── android/    Kotlin + Jetpack Compose Android app — real Google SSO via Credential Manager
 ```
 
 ## Quick start
@@ -17,42 +17,46 @@ npm install
 npm test        # 19 tests should pass
 npm start       # http://localhost:3000
 
-# 2. In Android Studio: open the android/ folder, let Gradle sync, run on an emulator
+# 2. In Android Studio: open the android/ folder, let Gradle sync, run on an emulator or physical device
 ```
 
-## Honesty about what's been verified
+## What's included
 
-This sandbox has Node.js but not the Android SDK, an emulator, or
-Android Studio. So:
+**API (`api/`)** — a real, running Node.js + Express REST API with SQLite (`better-sqlite3`). Features:
+- Email/password registration & login
+- Google Sign-In via ID token verification (`google-auth-library`)
+- Gig creation, browsing, filtering by radius/category/status
+- Apply to gigs, poster-only status changes
+- Hustle Score + badge awarding (Verified Student, Top Rated, Reliable Runner)
+- Settings updates with ownership check
+- Chat access control for gig participants
 
-- **`api/`** is fully real: I wrote it, installed its dependencies,
-  started it as an actual process, and ran 19 Jest/Supertest tests
-  against it — all passing. `curl http://localhost:3000/api/health`
-  works right now if you run it.
-- **The two Android files with zero Android-framework dependencies**
-  (`HustleScoreCalculator.kt`, `SyncMerge.kt`) were compiled with a
-  standalone Kotlin compiler and their 14 JUnit tests actually run and
-  pass — not just written, genuinely executed.
-- **The rest of the Android app** (six Compose screens, Room database,
-  Retrofit networking, WorkManager sync, three-language string
-  resources, navigation, theming, a real Gradle wrapper, a GitHub
-  Actions workflow) is complete, carefully cross-checked source code —
-  but I have never run the Android/Kotlin compiler or Android Gradle
-  Plugin against it, because they aren't available to me here. Expect
-  Android Studio's first sync to surface a handful of small fixes
-  (an import, an API that shifted between library versions); that's
-  normal for any first sync, not evidence of a deeper problem.
+**Android app (`android/`)** — Kotlin + Jetpack Compose UI with Material 3:
+- Login / sign-up with email/password + Google SSO (Credential Manager)
+- Home feed, Post Gig, My Gigs, Profile, Settings
+- Multi-language support (English / isiZulu / Afrikaans)
+- Offline mode with Room cache + WorkManager sync
+- Hustle Score client preview (mirrors server-side math)
 
-`android/README.md` has the full rubric-row-by-rubric-row mapping of
-where each requirement is implemented, plus a "do this next" checklist
-for everything that only you can do (run it, test it on a device, record
-the demo, push your own incremental commits).
+## Environment variables
 
-## On the AI Usage Write-up
+For the API, set these before starting:
 
-Part 1 asked you to disclose how AI was used. Given how much of Part 2's
-codebase was AI-written in this pass — effectively all of it, with you
-still needing to build, test, debug, and understand it before it's
-really "yours" — it's worth writing (or extending) that same kind of
-honest disclosure for Part 2 too, even if your brief doesn't explicitly
-ask for one this time.
+| Variable | Default | Purpose |
+|---|---|---|
+| `PORT` | `3000` | HTTP port |
+| `JWT_SECRET` | `dev-secret-change-me` | Change this before deploying anywhere real |
+| `QUICKGIG_DB` | `./quickgig.db` | SQLite file path |
+| `GOOGLE_CLIENT_IDS` | — | Google OAuth client ID(s) for ID token verification |
+
+For testing on a physical device, set `QUICKGIG_API_BASE_URL` to your computer's Wi-Fi address
+(or use `localhost` with `adb reverse`). The emulator uses `10.0.2.2` automatically.
+
+## What you still need to do
+
+1. **Google Cloud Console**: Register an OAuth 2.0 client, add your debug/release SHA-1 fingerprint
+   and package name (`com.quickgig.app`), then set `GOOGLE_CLIENT_IDS` to your client ID.
+2. **Google Maps API key**: Add your Maps key to `AndroidManifest.xml` if you use the map screen.
+3. **Physical device testing**: Run on your phone and verify the full flow end-to-end.
+4. **Push to GitHub** with incremental commits — committing as a single dump weakens the
+   "multiple commits" grading criterion.

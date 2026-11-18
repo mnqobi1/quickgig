@@ -7,4 +7,7 @@ object Routes {
     const val MY_GIGS = "my_gigs"
     const val PROFILE = "profile"
     const val SETTINGS = "settings"
+    const val GIG_DETAIL = "gig_detail/{gigId}"
+    const val CHAT = "chat/{gigId}"
+    const val NOTIFICATIONS = "notifications"
 }

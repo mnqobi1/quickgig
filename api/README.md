@@ -25,11 +25,11 @@ Health check: `GET /api/health` → `{"status":"ok"}`
 npm test
 ```
 
-19 tests (Jest + Supertest): registration/validation, login, the Google
-SSO stub, gig creation, radius-based feed filtering, the apply flow,
-poster-only status changes, Hustle Score + badge awarding on completion,
-settings updates with an ownership check, and chat access control. Tests
-run against an isolated SQLite file (`tests/test.db`), never your dev
+19 tests (Jest + Supertest): registration/validation, login, Google SSO,
+gig creation, radius-based feed filtering, the apply flow, poster-only
+status changes, Hustle Score + badge awarding on completion, settings
+updates with an ownership check, and chat access control. Tests run
+against an isolated SQLite file (`tests/test.db`), never your dev
 database.
 
 ## Endpoints
@@ -38,7 +38,7 @@ database.
 |---|---|---|---|
 | POST | `/api/auth/register` | — | Create an account (student-email domains like `.ac.za` auto-verify) |
 | POST | `/api/auth/login` | — | Email + password login |
-| POST | `/api/auth/google` | — | Google SSO stub (see note below) |
+| POST | `/api/auth/google` | — | Google Sign-In — verify Google ID token, issue QuickGig JWT |
 | GET | `/api/gigs` | — | List/filter gigs — `?lat&lng&radiusKm&category&status` |
 | POST | `/api/gigs` | Y | Post a new gig |
 | GET | `/api/gigs/:id` | — | Gig detail |
@@ -53,15 +53,13 @@ database.
 Protected routes expect `Authorization: Bearer <token>`, issued by
 register/login/google and validated in `src/middleware/authenticate.js`.
 
-### Note on Google SSO
+### Google Sign-In
 
-`POST /api/auth/google` demonstrates the SSO code path (issue a token,
-create/find the user) without requiring a production Google Cloud OAuth
-client. To make it real: register an OAuth client in Google Cloud
-Console, verify the ID token server-side with `google-auth-library`
-instead of trusting the posted email directly, and update the Android
-app's SSO button to use Credential Manager / Google Identity Services
-with that client ID.
+`POST /api/auth/google` verifies Google ID tokens server-side using
+`google-auth-library`. The Android app sends the ID token obtained from
+Credential Manager / Google Identity Services; the API validates the
+signature, issuer, audience, and expiry, then creates/finds the user and
+issues a QuickGig JWT.
 
 ## Hustle Score formula (`src/hustle.js`)
 
@@ -81,3 +79,16 @@ preview; the server call is always the source of truth.
 | `PORT` | `3000` | HTTP port |
 | `JWT_SECRET` | `dev-secret-change-me` | **Change this before deploying anywhere real** |
 | `QUICKGIG_DB` | `./quickgig.db` | SQLite file path |
+| `GOOGLE_CLIENT_IDS` | — | Google OAuth client ID(s) for ID token verification |
+
+Set `GOOGLE_CLIENT_IDS` before starting the API for Google Sign-In to work:
+
+```bash
+# PowerShell
+$env:GOOGLE_CLIENT_IDS="your-client-id.apps.googleusercontent.com"
+
+# Bash
+export GOOGLE_CLIENT_IDS="your-client-id.apps.googleusercontent.com"
+
+npm start
+```

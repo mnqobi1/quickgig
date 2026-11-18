@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -19,22 +18,24 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Bolt
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.foundation.layout.height
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import android.app.Activity
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bolt
 import com.quickgig.app.R
 import com.quickgig.app.data.model.SupportedLanguage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(viewModel: LoginViewModel, onSignedIn: () -> Unit) {
+fun LoginScreen(viewModel: LoginViewModel, activity: Activity, onSignedIn: () -> Unit) {
     val state = viewModel.uiState
 
     // Navigate from an effect rather than in the middle of composition, so it
@@ -104,7 +105,7 @@ fun LoginScreen(viewModel: LoginViewModel, onSignedIn: () -> Unit) {
             Spacer(Modifier.height(8.dp))
 
             OutlinedButton(
-                onClick = { viewModel.continueWithGoogle(name = "Google Demo User", email = "google-demo@example.com") },
+                onClick = { viewModel.continueWithGooglePressed(activity) },
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(stringResource(R.string.login_continue_google))

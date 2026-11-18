@@ -1,5 +1,6 @@
 package com.quickgig.app.data.repository
 
+import android.util.Log
 import com.quickgig.app.data.local.CachedGigEntity
 import com.quickgig.app.data.local.DraftGigEntity
 import com.quickgig.app.data.local.GigDao
@@ -12,6 +13,8 @@ import com.quickgig.app.data.remote.QuickGigApi
 import com.quickgig.app.data.remote.UpdateStatusRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+
+private const val TAG = "GigRepository"
 
 sealed class PostGigResult {
     data class PostedLive(val gig: Gig) : PostGigResult()
@@ -37,10 +40,15 @@ class GigRepository(
     fun observePendingDrafts(): Flow<List<DraftGigEntity>> = draftGigDao.observePending()
 
     suspend fun refreshFeed(lat: Double?, lng: Double?, radiusKm: Double?, category: String?) {
-        if (!networkMonitor.isOnline()) return
+        if (!networkMonitor.isOnline()) {
+            Log.w(TAG, "Cannot refresh feed - device is offline")
+            return
+        }
+        Log.d(TAG, "Refreshing gig feed from API")
         runCatching { api.listGigs(lat, lng, radiusKm, category?.takeIf { it != "all" }) }
             .onSuccess { response ->
                 val gigs = response.body()?.gigs ?: return@onSuccess
+                Log.d(TAG, "Loaded ${gigs.size} gig(s) from feed")
                 gigDao.upsertAll(gigs.map { it.toCachedEntity() })
             }
     }
@@ -54,6 +62,7 @@ class GigRepository(
         neededBy: String?,
     ): PostGigResult {
         if (!networkMonitor.isOnline()) {
+            Log.w(TAG, "Device offline - saving gig draft locally")
             draftGigDao.insert(
                 DraftGigEntity(
                     title = title, description = description, category = category,
@@ -69,9 +78,11 @@ class GigRepository(
             onSuccess = { response ->
                 val gig = response.body()
                 if (response.isSuccessful && gig != null) {
+                    Log.i(TAG, "Gig posted successfully: id=${gig.id}")
                     gigDao.upsertAll(listOf(gig.toCachedEntity()))
                     PostGigResult.PostedLive(gig)
                 } else {
+                    Log.e(TAG, "Failed to post gig (HTTP ${response.code()}), saving to drafts")
                     draftGigDao.insert(
                         DraftGigEntity(
                             title = title, description = description, category = category,
@@ -84,6 +95,7 @@ class GigRepository(
                 }
             },
             onFailure = {
+                Log.e(TAG, "Network error posting gig, saving to drafts", it)
                 draftGigDao.insert(
                     DraftGigEntity(
                         title = title, description = description, category = category,
@@ -115,11 +127,22 @@ class GigRepository(
             .getOrDefault(false)
     }
 
+    suspend fun getGig(gigId: Long): Result<Gig> = runCatching {
+        val response = api.getGig(gigId)
+        response.body()?.takeIf { response.isSuccessful }
+            ?: error("Couldn't load gig (HTTP ${response.code()})")
+    }
+
     suspend fun applyToGig(gigId: Long): Result<Unit> =
         runCatching { api.applyToGig(gigId) }.map { }
 
     suspend fun updateStatus(gigId: Long, status: String, assignedTo: Long?, stars: Int?, onTime: Boolean?): Result<Unit> =
         runCatching { api.updateGigStatus(gigId, UpdateStatusRequest(status, assignedTo, stars, onTime)) }.map { }
+
+    suspend fun withdrawFromGig(gigId: Long): Result<Unit> = runCatching {
+        val response = api.withdrawFromGig(gigId)
+        if (!response.isSuccessful) error("Couldn't withdraw (HTTP ${response.code()})")
+    }
 }
 
 private fun Gig.toCachedEntity() = CachedGigEntity(

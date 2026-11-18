@@ -26,6 +26,12 @@
             </intent-filter>
         </activity>
 
+        <!-- Google Maps API key — replace "YOUR_API_KEY_HERE" with your actual key.
+             Get one from the Google Cloud Console (Maps SDK for Android). -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY_HERE" />
+
     </application>
 
 </manifest>

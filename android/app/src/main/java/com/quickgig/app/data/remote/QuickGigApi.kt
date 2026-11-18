@@ -41,6 +41,9 @@ interface QuickGigApi {
     @POST("api/gigs/{id}/apply")
     suspend fun applyToGig(@Path("id") id: Long): Response<Unit>
 
+    @POST("api/gigs/{id}/withdraw")
+    suspend fun withdrawFromGig(@Path("id") id: Long): Response<Unit>
+
     @PATCH("api/gigs/{id}/status")
     suspend fun updateGigStatus(@Path("id") id: Long, @Body body: UpdateStatusRequest): Response<Unit>
 
@@ -55,4 +58,11 @@ interface QuickGigApi {
 
     @POST("api/gigs/{gigId}/messages")
     suspend fun sendMessage(@Path("gigId") gigId: Long, @Body body: SendMessageRequest): Response<ChatMessage>
+
+    @GET("api/notifications")
+    suspend fun listNotifications(@Query("after") after: Long? = null, @Query("limit") limit: Int? = null): Response<Map<String, Any>>
+
+    @POST("api/notifications/read")
+    suspend fun markNotificationsRead(@Body body: Map<String, Any>): Response<Unit>
+
 }

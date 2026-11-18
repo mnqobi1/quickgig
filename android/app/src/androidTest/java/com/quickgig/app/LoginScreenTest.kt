@@ -1,5 +1,6 @@
 package com.quickgig.app
 
+import android.app.Activity
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -36,7 +37,7 @@ class LoginScreenTest {
         val viewModel = LoginViewModel(fakeAuthRepository)
 
         composeTestRule.setContent {
-            QuickGigTheme { LoginScreen(viewModel = viewModel, onSignedIn = {}) }
+            QuickGigTheme { LoginScreen(viewModel = viewModel, activity = null as Activity, onSignedIn = {}) }
         }
 
         composeTestRule.onNodeWithText("Log in").performClick()
@@ -54,7 +55,7 @@ class LoginScreenTest {
         val viewModel = LoginViewModel(fakeAuthRepository)
 
         composeTestRule.setContent {
-            QuickGigTheme { LoginScreen(viewModel = viewModel, onSignedIn = {}) }
+            QuickGigTheme { LoginScreen(viewModel = viewModel, activity = null as Activity, onSignedIn = {}) }
         }
 
         composeTestRule.onNodeWithText("Email").performTextInput("student@example.com")

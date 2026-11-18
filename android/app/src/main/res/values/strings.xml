@@ -71,4 +71,50 @@
     <string name="settings_payment_title">Payment &amp; credits</string>
     <string name="settings_payment_desc">Manage payout details and view your campus-credit balance</string>
     <string name="settings_logout">Log out</string>
+
+    <!-- Settings additional fields -->
+    <string name="settings_phone">Phone</string>
+    <string name="settings_campus_area">Campus / area</string>
+    <string name="settings_photo_url">Profile photo URL</string>
+    <string name="settings_profile_photo">Profile photo</string>
+    <string name="settings_profile_name_placeholder">Your name</string>
+    <string name="settings_save_changes">Save changes</string>
+    <string name="settings_saved">Changes saved</string>
+
+    <!-- Gig detail -->
+    <string name="gig_detail_title">Gig details</string>
+    <string name="gig_detail_apply">Apply</string>
+    <string name="gig_detail_applied">Applied</string>
+    <string name="gig_detail_assign">Assign to</string>
+    <string name="gig_detail_complete">Complete gig</string>
+    <string name="gig_detail_cancel">Cancel gig</string>
+    <string name="gig_detail_withdraw">Withdraw</string>
+    <string name="gig_detail_open_again">Open again</string>
+    <string name="gig_detail_status_open">Open</string>
+    <string name="gig_detail_status_assigned">Assigned</string>
+    <string name="gig_detail_status_completed">Completed</string>
+    <string name="gig_detail_status_cancelled">Cancelled</string>
+    <string name="gig_detail_posted_by">Posted by</string>
+    <string name="gig_detail_assigned_to">Assigned to</string>
+    <string name="gig_detail_needed_by">Needed by</string>
+    <string name="gig_detail_category">Category</string>
+    <string name="gig_detail_price">Credits</string>
+    <string name="gig_detail_description">Description</string>
+    <string name="gig_detail_applicants">Applicants</string>
+    <string name="gig_detail_no_applicants">No applicants yet</string>
+    <string name="gig_detail_map">Gig location</string>
+    <string name="gig_detail_rating_title">Rate this gig</string>
+    <string name="gig_detail_rating_hint">How many stars (1-5)?</string>
+    <string name="gig_detail_on_time">Completed on time</string>
+
+    <!-- Chat -->
+    <string name="chat_title">Messages</string>
+    <string name="chat_send">Send</string>
+    <string name="chat_message_hint">Type a message…</string>
+    <string name="chat_no_messages">No messages yet. Start the conversation!</string>
+
+    <!-- Notifications -->
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_empty">No notifications yet</string>
+    <string name="notifications_mark_all_read">Mark all as read</string>
 </resources>

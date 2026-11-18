@@ -1,4 +1,6 @@
-// src/hustle.js
+// src/hustle.js — the Hustle Score (gamification) rules. Mirrored client-side in
+// android/.../gamification/HustleScoreCalculator.kt for an instant preview; this file is the
+// source of truth.
 const db = require('./db');
 
 const BADGE_RULES = [
@@ -36,8 +38,10 @@ function getUserStats(userId) {
     .prepare("SELECT COUNT(*) AS n FROM gigs WHERE assigned_to = ? AND status = 'completed'")
     .get(userId).n;
 
+  // A late cancellation is the *worker* pulling out of a gig they had accepted. (A poster
+  // cancelling a gig is not the worker's fault and must not count against them.)
   const lateCancellations = db
-    .prepare("SELECT COUNT(*) AS n FROM gigs WHERE assigned_to = ? AND status = 'cancelled'")
+    .prepare('SELECT COUNT(*) AS n FROM gig_withdrawals WHERE user_id = ?')
     .get(userId).n;
 
   const ratingRow = db

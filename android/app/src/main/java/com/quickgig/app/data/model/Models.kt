@@ -27,6 +27,7 @@ data class Badge(
 data class PublicProfile(
     val id: Long,
     val name: String,
+    val phone: String? = null,
     val photoUrl: String? = null,
     val campusArea: String? = null,
     val hustleScore: Int = 0,
@@ -34,6 +35,7 @@ data class PublicProfile(
     val badges: List<Badge> = emptyList(),
     val completedGigs: Int = 0,
     val averageRating: Double = 0.0,
+    val notificationsEnabled: Boolean = true,
 )
 
 @Serializable
@@ -53,6 +55,10 @@ data class Gig(
     val assignedTo: Long? = null,
     val createdAt: String,
     val distanceKm: Double? = null,
+    val posterName: String? = null,
+    val assignedToName: String? = null,
+    val applicantCount: Int = 0,
+    val myApplication: String? = null,
 )
 
 @Serializable
@@ -66,6 +72,17 @@ data class ChatMessage(
     @SerialName("recipient_id") val recipientId: Long,
     val body: String,
     @SerialName("created_at") val createdAt: String,
+)
+
+@Serializable
+data class Notification(
+    val id: Long,
+    val type: String,
+    val title: String,
+    val body: String,
+    @SerialName("gig_id") val gigId: Long? = null,
+    @SerialName("created_at") val createdAt: String,
+    val read: Boolean = false,
 )
 
 // Display labels live in strings.xml (see categoryLabelRes() in the UI layer)

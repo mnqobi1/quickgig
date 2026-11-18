@@ -2,6 +2,20 @@
 const fs = require('fs');
 const path = require('path');
 
+// Mock Google ID-token verification so the SSO test doesn't need a real Google token.
+jest.mock('google-auth-library', () => ({
+  OAuth2Client: jest.fn().mockImplementation(() => ({
+    verifyIdToken: jest.fn().mockResolvedValue({
+      getPayload: () => ({
+        sub: 'google-sub-123',
+        email: 'sso-user@university.ac.za',
+        email_verified: true,
+        name: 'SSO User',
+      }),
+    }),
+  })),
+}));
+
 const TEST_DB = path.join(__dirname, 'test.db');
 if (fs.existsSync(TEST_DB)) fs.unlinkSync(TEST_DB);
 process.env.QUICKGIG_DB = TEST_DB;
@@ -9,8 +23,10 @@ process.env.JWT_SECRET = 'test-secret';
 
 const request = require('supertest');
 const app = require('../server');
+const db = require('../src/db');
 
 afterAll(() => {
+  db.close();
   for (const suffix of ['', '-wal', '-shm']) {
     const f = TEST_DB + suffix;
     if (fs.existsSync(f)) fs.unlinkSync(f);
@@ -66,9 +82,10 @@ describe('auth', () => {
   });
 
   it('logs in or registers via the Google SSO stub', async () => {
-    const res = await request(app).post('/api/auth/google').send({ email: 'sso-user@example.com', name: 'SSO User' });
+    const res = await request(app).post('/api/auth/google').send({ idToken: 'fake-google-id-token', name: 'SSO User' });
     expect(res.status).toBe(200);
     expect(res.body.user.verificationStatus).toBe('verified');
+    expect(res.body.user.email).toBe('sso-user@university.ac.za');
   });
 
   it('rejects protected routes without a token', async () => {
@@ -144,6 +161,7 @@ describe('settings and chat', () => {
     const worker = await request(app).post('/api/auth/register').send({ name: 'Chat Worker', email: 'chatworker@example.com', password: 'chatpass234' });
     const stranger = await request(app).post('/api/auth/register').send({ name: 'Stranger', email: 'stranger@example.com', password: 'strangepass1' });
     const gig = await request(app).post('/api/gigs').set('Authorization', `Bearer ${poster.body.token}`).send({ title: 'Move a couch', category: 'labour', priceCredits: 80 });
+    await request(app).post(`/api/gigs/${gig.body.id}/apply`).set('Authorization', `Bearer ${worker.body.token}`);
     await request(app).patch(`/api/gigs/${gig.body.id}/status`).set('Authorization', `Bearer ${poster.body.token}`).send({ status: 'assigned', assignedTo: worker.body.user.id });
     const send = await request(app).post(`/api/gigs/${gig.body.id}/messages`).set('Authorization', `Bearer ${poster.body.token}`).send({ recipientId: worker.body.user.id, body: 'Still on for 4pm?' });
     expect(send.status).toBe(201);
